@@ -1,26 +1,20 @@
-const dino = document.getElementById("dino");
-const cactus = document.getElementById("cactus");
+const dino = document.getElementById("dino")
+const cactus = document.getElementById("cactus")
 
-document.addEventListener("keydown", function (event) {
-  jump();
-});
+onkeydown = jump
+
+requestAnimationFrame(check)
 
 function jump() {
-  if (dino.classList != "jump") {
-    dino.classList.add("jump");
-  }
-  setTimeout(function () {
-    dino.classList.remove("jump");
-  }, 300);
+  if (dino.className != "jump") dino.className = "jump"
+  setTimeout(() => (dino.className = ""), 610)
 }
 
-let isAlive = setInterval(function () {
-  let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("top"));
-  let cactusLeft = parseInt(
-    window.getComputedStyle(cactus).getPropertyValue("left")
-  );
+function check() {
+  const bottom = 148 - dino.getBoundingClientRect().top
+  const left = parseInt(getComputedStyle(cactus).left)
 
-  if (cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 140) {
-    alert("game over!!");
-  }
-}, 10);
+  if (left < 45 && left > 0 && bottom <= 30) alert("game over!!")
+
+  requestAnimationFrame(check)
+}
